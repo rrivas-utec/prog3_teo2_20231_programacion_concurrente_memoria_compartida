@@ -42,4 +42,11 @@ auto count_frequence(Iterator start, Iterator stop) {
     return result;
 }
 
+template <typename KType, typename VType>
+ostream& operator<<(ostream& out, const map<KType, VType> mp) {
+    for (const auto& [k, v]: mp)
+        out << k <<": " << v << endl;
+    return out;
+}
+
 #endif //PROG3_TEO2_20231_PROGRAMACION_CONCURRENTE_MEMORIA_COMPARTIDA_COUNT_FREQUENCE_H
