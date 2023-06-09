@@ -2,7 +2,10 @@
 #include <thread>
 #include <vector>
 #include <chrono>
+#include <numeric>
+#include <algorithm>
 #include <mutex> // Incluir la libreria
+#include "count_frequence.h"
 using namespace std;
 
 mutex mtx; // Variable Global Cerrojo de una puerta
@@ -47,7 +50,19 @@ void calcular_total_variable_compartida() {
     }
 }
 
+void ejemplo_contar_frecuencia() {
+    vector v {1,3,5,1,4,1,1,4,5,10,1000,1000};
+    auto r = count_frequence(begin(v), end(v));
+    cout << r << endl;
+    auto fq = accumulate(begin(r), end(r), 0, [](auto sum, auto item){
+        sum += item.second;
+        return sum;
+    });
+    cout << fq << "==" << size(v);
+}
+
 int main() {
-    calcular_total_variable_compartida();
+//    calcular_total_variable_compartida();
+    ejemplo_contar_frecuencia();
     return 0;
 }

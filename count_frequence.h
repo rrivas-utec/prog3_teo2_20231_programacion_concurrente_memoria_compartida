@@ -21,8 +21,8 @@ void frequence(Iterator start, Iterator stop, map<T, int>& result) {
 template<typename Iterator>
 auto count_frequence(Iterator start, Iterator stop) {
     // Variables auxiliares
-    auto nh = thread::hardware_concurrency();
     auto sz = distance(start, stop);
+    auto nh = sz <= thread::hardware_concurrency()? 1: thread::hardware_concurrency();
     auto range = sz / nh;
     using T = typename Iterator::value_type;
     map<T, int> result;
